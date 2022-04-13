@@ -67,7 +67,7 @@ function BottomTabNavigator() {
         component={TabJarvisScreen}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
           title: 'jARVIS',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="shopping-cart" color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -89,7 +89,7 @@ function BottomTabNavigator() {
         component={TabEdithScreen}
         options={{
           title: 'Edith',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="mobile" color={color} />,
         }}
       />
     </BottomTab.Navigator>
