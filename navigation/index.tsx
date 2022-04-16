@@ -58,12 +58,12 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="TabJarvis"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="TabOne"
+        name="TabJarvis"
         component={TabJarvisScreen}
         options={{
           title: 'jARVIS',
@@ -71,9 +71,9 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="TabEdith"
         component={TabEdithScreen}
-        options={({ navigation }: RootTabScreenProps<'TabTwo'>) => ({
+        options={({ navigation }: RootTabScreenProps<'TabEdith'>) => ({
             title: 'Edith',
             tabBarIcon: ({ color }) => <TabBarIcon name="mobile" color={color} />,
             headerRight: () => (

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { RootTabScreenProps } from '../types';
 import { WebView } from 'react-native-webview';
 
-export default function TabJarvisScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function TabJarvisScreen({ navigation }: RootTabScreenProps<'TabJarvis'>) {
   return (
       <WebView
           style={styles.container}
