@@ -65,32 +65,32 @@ function BottomTabNavigator() {
       <BottomTab.Screen
         name="TabOne"
         component={TabJarvisScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
+        options={{
           title: 'jARVIS',
           tabBarIcon: ({ color }) => <TabBarIcon name="shopping-cart" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-        })}
+        }}
       />
       <BottomTab.Screen
         name="TabTwo"
         component={TabEdithScreen}
-        options={{
-          title: 'Edith',
-          tabBarIcon: ({ color }) => <TabBarIcon name="mobile" color={color} />,
-        }}
+        options={({ navigation }: RootTabScreenProps<'TabTwo'>) => ({
+            title: 'Edith',
+            tabBarIcon: ({ color }) => <TabBarIcon name="mobile" color={color} />,
+            headerRight: () => (
+                <Pressable
+                    onPress={() => navigation.navigate('Modal')}
+                    style={({ pressed }) => ({
+                        opacity: pressed ? 0.5 : 1,
+                    })}>
+                    <FontAwesome
+                        name="gear"
+                        size={25}
+                        color={Colors[colorScheme].text}
+                        style={{ marginRight: 15 }}
+                    />
+                </Pressable>
+            ),
+        })}
       />
     </BottomTab.Navigator>
   );
