@@ -4,7 +4,7 @@ import {DefaultStyle} from "../styles/default";
 
 export default function EdithScreen() {
     return (
-        <View style={DefaultStyle}>
+        <View style={DefaultStyle.container}>
             <Text>Edith3</Text>
         </View>
     );

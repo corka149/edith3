@@ -1,11 +1,12 @@
 import * as React from 'react';
-import {Text, View} from 'react-native';
 import {DefaultStyle} from "../styles/default";
+import WebView from "react-native-webview";
 
 export default function JarvisScreen() {
     return (
-        <View style={DefaultStyle}>
-            <Text>Jarvis</Text>
-        </View>
+        <WebView
+            style={DefaultStyle.container}
+            source={{uri: "https://web-jarvis.de"}}
+        />
     )
 }
