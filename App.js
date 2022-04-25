@@ -1,36 +1,40 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import EdithScreen from "./screens/EdithScreen";
 import JarvisScreen from "./screens/JarvisScreen";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
     return (
-        <NavigationContainer>
-            <Tab.Navigator>
-                <Tab.Screen
-                    name="Jarvis"
-                    component={JarvisScreen}
-                    options={tabOptions("cart")}
-                />
+        <SafeAreaProvider>
+            <NavigationContainer>
+                <Tab.Navigator initialRouteName={"Jarvis"}
+                               barStyle={{backgroundColor: '#ff9800'}}>
+                    <Tab.Screen
+                        name="Jarvis"
+                        component={JarvisScreen}
+                        options={tabOptions("cart")}
+                    />
 
-                <Tab.Screen
-                    name="Edith3"
-                    component={EdithScreen}
-                    options={tabOptions("phone-portrait")}
-                />
-            </Tab.Navigator>
-        </NavigationContainer>
+                    <Tab.Screen
+                        name="Edith3"
+                        component={EdithScreen}
+                        options={tabOptions("phone-portrait")}
+                    />
+                </Tab.Navigator>
+            </NavigationContainer>
+        </SafeAreaProvider>
     );
 }
 
 function tabOptions(iconName) {
     return {
-        tabBarIcon: ({ color, size }) => {
-            return <Ionicons name={iconName} size={size} color={color} />;
+        tabBarIcon: ({color}) => {
+            return <Ionicons name={iconName} size={20} color={color}/>;
         }
     }
 }

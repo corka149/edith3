@@ -1,11 +1,12 @@
 import * as React from 'react';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
 import {DefaultStyle} from "../styles/default";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function EdithScreen() {
     return (
-        <View style={DefaultStyle.container}>
+        <SafeAreaView style={DefaultStyle.container}>
             <Text>Edith3</Text>
-        </View>
+        </SafeAreaView>
     );
 }
