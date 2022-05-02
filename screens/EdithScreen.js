@@ -1,19 +1,34 @@
 import * as React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { List, DataTable } from 'react-native-paper';
+import { List, DataTable, TextInput } from 'react-native-paper';
 import * as jarvisClient from '../services/jarivsClient';
 
 function Product({ product }) {
+    const [color, setColor] = React.useState("black");
+
+    const toggleColor = () => {
+        const newColor = color === "black" ? "lightgrey" : "black";
+        setColor(newColor);
+    };
+
     return (
-        <DataTable.Row>
-            <DataTable.Cell>{product.name}</DataTable.Cell>
-            <DataTable.Cell numeric>{product.amount}</DataTable.Cell>
+        <DataTable.Row
+            onPress={toggleColor}
+        >
+            <DataTable.Cell >
+                <Text style={{ color: color }}>{product.name}</Text>
+            </DataTable.Cell>
+            <DataTable.Cell numeric>
+                <Text style={{ color: color }}>{product.amount}</Text>
+            </DataTable.Cell>
         </DataTable.Row>
     );
 }
 
 function ShoppingList({ list }) {
+    const [sum, setSum] = React.useState(0.0);
+
     return (
         <List.Accordion
             title={list.planned_for}
