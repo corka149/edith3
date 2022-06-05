@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { List, DataTable, TextInput } from 'react-native-paper';
 import * as jarvisClient from '../services/jarivsClient';
+import * as secureStorage from '../services/secureStorage';
 
 function Product({ product }) {
     const [color, setColor] = React.useState("black");
@@ -27,8 +28,6 @@ function Product({ product }) {
 }
 
 function ShoppingList({ list }) {
-    const [sum, setSum] = React.useState(0.0);
-
     return (
         <List.Accordion
             title={list.planned_for}
@@ -63,11 +62,15 @@ function ShoppingLists(props) {
 
 export default function EdithScreen() {
     const [lists, setLists] = React.useState([]);
+    const [token, setToken] = React.useState('');
 
     React.useEffect(async () => {
-        const fetchedLists = await jarvisClient.fetchShoppingLists();
+        const storedToken = await secureStorage.getToken();
+        setToken(storedToken);
+
+        const fetchedLists = await jarvisClient.fetchShoppingLists(storedToken);
         setLists(fetchedLists);
-    });
+    }, [token]);
 
     return (
         <SafeAreaView >

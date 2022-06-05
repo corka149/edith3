@@ -8,7 +8,7 @@ export default function JarvisScreen() {
         <SafeAreaView style={{ flex:1 }}>
             <WebView
                 style={DefaultStyle.container}
-                source={{uri: "https://web-jarvis.de"}}
+                source={{uri: "https://www.web-jarvis.de"}}
             />
         </SafeAreaView>
     )

@@ -19,7 +19,7 @@ export default function ConfigScreen() {
     React.useEffect(async () => {
         const savedToken = await secureStorage.getToken();
         setToken(savedToken);
-    });
+    }, []);
 
     return (
         <SafeAreaView style={style.container}>
@@ -30,10 +30,8 @@ export default function ConfigScreen() {
                 label='Token'
                 value={token}
                 secureTextEntry={true}
-                onChangeText={async (text) => {
-                    if (text.length > 0) {
-                        setToken(text);
-                    }
+                onChangeText={(text) => {
+                    setToken(text);
                 }}
             />
             <FAB
