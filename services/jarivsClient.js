@@ -1,4 +1,4 @@
-
+import * as offlineStorage from './offlineStorage';
 
 export async function fetchShoppingLists(token) {
     try {
@@ -15,9 +15,11 @@ export async function fetchShoppingLists(token) {
 
         const lists = await response.json();
 
+        await offlineStorage.storeShoppingLists(lists);
+
         return lists.data || [];
     } catch (err) {
         console.error(err);
-        return [];
+        return await offlineStorage.getShoppingLists();
     }
 }
