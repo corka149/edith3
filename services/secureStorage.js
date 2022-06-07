@@ -9,7 +9,12 @@ const tokenKey = 'jarvisApiToken'
  * @returns {Promise<void>}
  */
 export async function saveToken(token) {
-    await SecureStore.setItemAsync(tokenKey, token);
+    try {
+        await SecureStore.setItemAsync(tokenKey, token);
+    } catch (err) {
+        console.error(err);
+        alert('Could not store API token');
+    }
 }
 
 /**
@@ -17,7 +22,13 @@ export async function saveToken(token) {
  * @returns {Promise<string>}
  */
 export async function getToken() {
-    const token = await SecureStore.getItemAsync(tokenKey);
+    let token = '';
+
+    try {
+        token = await SecureStore.getItemAsync(tokenKey);
+    } catch (err) {
+        console.error(err);
+    }
 
     if (!token) {
         alert('No jARVIS API token available');

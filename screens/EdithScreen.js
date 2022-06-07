@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, ScrollView} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {List, DataTable, FAB} from 'react-native-paper';
 import * as jarvisClient from '../services/jarivsClient';
@@ -68,8 +68,10 @@ export default function EdithScreen() {
         const storedToken = await secureStorage.getToken();
         setToken(storedToken);
 
-        const fetchedLists = await jarvisClient.fetchShoppingLists(storedToken);
-        setLists(fetchedLists);
+        if (storedToken) {
+            const fetchedLists = await jarvisClient.fetchShoppingLists(storedToken);
+            setLists(fetchedLists);
+        }
     }, [token]);
 
     return (
@@ -80,8 +82,10 @@ export default function EdithScreen() {
                 small
                 icon="refresh"
                 onPress={async () => {
-                    const fetchedLists = await jarvisClient.fetchShoppingLists(token);
-                    setLists(fetchedLists);
+                    if (token) {
+                        const fetchedLists = await jarvisClient.fetchShoppingLists(token);
+                        setLists(fetchedLists);
+                    }
                 }}
             />
         </SafeAreaView>
