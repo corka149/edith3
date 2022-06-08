@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import EdithScreen from "./screens/EdithScreen";
 import JarvisScreen from "./screens/JarvisScreen";
@@ -7,10 +7,20 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider as PaperProvider} from 'react-native-paper';
 import ConfigScreen from "./screens/ConfigScreen";
+import * as backgroundService from "./services/backgroundService";
+import * as BackgroundFetch from "expo-background-fetch";
 
 const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
+    React.useEffect(async () => {
+        const isRegistered = await backgroundService.isRegistered();
+
+        if (!isRegistered) {
+            await backgroundService.registerBackgroundFetchAsync();
+        }
+    }, []);
+
     return (
         <PaperProvider>
             <SafeAreaProvider>

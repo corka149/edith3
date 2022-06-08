@@ -1,5 +1,11 @@
 import * as offlineStorage from './offlineStorage';
 
+/**
+ * Get open shopping lists from jARVIS.
+ *
+ * @param token
+ * @returns {Promise<*[]|any|[]|undefined>}
+ */
 export async function fetchShoppingLists(token) {
     try {
         const response = await fetch(
