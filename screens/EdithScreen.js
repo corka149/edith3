@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleSheet, Text, ScrollView} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {List, DataTable, FAB} from 'react-native-paper';
+import {List, DataTable, Button} from 'react-native-paper';
 import * as jarvisClient from '../services/jarivsClient';
 import * as secureStorage from '../services/secureStorage';
 
@@ -76,18 +76,21 @@ export default function EdithScreen() {
 
     return (
         <SafeAreaView style={style.container}>
-            <ShoppingLists lists={lists} />
-            <FAB
-                style={style.fab}
-                small
+            <ScrollView>
+                <ShoppingLists lists={lists} />
+            </ScrollView>
+            <Button
                 icon="refresh"
+                mode="outlined"
                 onPress={async () => {
                     if (token) {
                         const fetchedLists = await jarvisClient.fetchShoppingLists(token);
                         setLists(fetchedLists);
                     }
                 }}
-            />
+            >
+                Refresh
+            </Button>
         </SafeAreaView>
     );
 }
@@ -97,12 +100,5 @@ const style = StyleSheet.create({
         flex: 1,
         margin: 15,
         justifyContent: 'flex-start',
-    },
-    fab: {
-        position: 'absolute',
-        backgroundColor: '#ff9800',
-        margin: 15,
-        right: -10,
-        bottom: -10,
-    },
+    }
 })
