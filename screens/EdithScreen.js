@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {StyleSheet, Text, ScrollView} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {List, DataTable, Button} from 'react-native-paper';
+import {List, DataTable, Button, ActivityIndicator} from 'react-native-paper';
 import * as jarvisClient from '../services/jarivsClient';
 import * as secureStorage from '../services/secureStorage';
 
@@ -49,7 +49,7 @@ function ShoppingList({ list }) {
 }
 
 function ShoppingLists(props) {
-    return (
+    return !props.lists || !props.lists.map ? <ActivityIndicator animating={true}/>   : (
         <List.Section title="Shopping lists">
             {
                 props.lists.map(list =>
